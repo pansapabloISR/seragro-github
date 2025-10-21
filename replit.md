@@ -120,7 +120,17 @@ Preferred communication style: Simple, everyday language.
   - `server.py` now wrapper script that executes `npm run dev` (runs Vite)
   - Vite dev server handles module bundling, HMR, and static file serving on port 5000
   - Workflow still named "Server" and uses `restart_workflow` for restarts
-- **Removed cache-busting query parameters** - Vite handles module versioning automatically
+- **Production Build Configuration** (`vite.config.js`):
+  - Multi-page application with 5 HTML entry points
+  - All JavaScript modules bundled into single `unified-contact.js` file with hash
+  - Assets copied to `dist/` directory with optimized naming
+  - Run `npm run build` to generate production files in `dist/` folder
+- **Module Architecture**:
+  - `js/unified-contact.js`: Main ES module, imports Vapi SDK, exports UnifiedContact API
+  - `js/mavilda-chat.js`: ES module for chat widget, exports window.MavildaChat API  
+  - `main-app.js`: ES module for navigation and general UI functionality
+  - All modules loaded via `<script type="module">` tags across all 5 HTML pages
+- **Removed cache-busting query parameters** - Vite handles module versioning automatically with content hashes
 
 ### Unified Communication System (Oct 20, 2025)
 - **Created unified-contact.js**: Single-button multi-channel communication hub
