@@ -208,7 +208,7 @@ function addStyles() {
     const styles = `
         .unified-contact-main-button {
             position: fixed;
-            bottom: 100px;
+            bottom: calc(100px + env(safe-area-inset-bottom, 0px));
             right: 35px;
             background: linear-gradient(135deg, ${CONFIG.primaryColor} 0%, ${CONFIG.secondaryColor} 100%);
             color: white;
@@ -245,7 +245,7 @@ function addStyles() {
 
         .unified-contact-menu {
             position: fixed;
-            bottom: 180px;
+            bottom: calc(180px + env(safe-area-inset-bottom, 0px));
             right: 35px;
             display: flex;
             flex-direction: column;
@@ -335,7 +335,7 @@ function addStyles() {
 
         .call-indicator {
             position: fixed;
-            bottom: 100px;
+            bottom: calc(100px + env(safe-area-inset-bottom, 0px));
             right: 35px;
             background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
             color: white;
@@ -401,14 +401,14 @@ function addStyles() {
 
         @media (max-width: 768px) {
             .unified-contact-main-button {
-                bottom: 80px;
+                bottom: calc(100px + env(safe-area-inset-bottom, 0px));
                 right: 25px;
                 padding: 14px 24px;
                 font-size: 15px;
             }
 
             .unified-contact-menu {
-                bottom: 160px;
+                bottom: calc(180px + env(safe-area-inset-bottom, 0px));
                 right: 25px;
                 gap: 10px;
             }
@@ -420,7 +420,7 @@ function addStyles() {
             }
 
             .call-indicator {
-                bottom: 80px;
+                bottom: calc(100px + env(safe-area-inset-bottom, 0px));
                 right: 25px;
                 padding: 14px 24px;
                 font-size: 15px;
