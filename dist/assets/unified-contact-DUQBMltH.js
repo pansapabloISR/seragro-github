@@ -329,7 +329,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         .unified-contact-main-button {
             position: fixed;
             bottom: 100px;
-            right: 20px;
+            right: 35px;
             background: linear-gradient(135deg, ${be.primaryColor} 0%, ${be.secondaryColor} 100%);
             color: white;
             border: none;
@@ -366,7 +366,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         .unified-contact-menu {
             position: fixed;
             bottom: 180px;
-            right: 20px;
+            right: 35px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -456,7 +456,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         .call-indicator {
             position: fixed;
             bottom: 100px;
-            right: 20px;
+            right: 35px;
             background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
             color: white;
             border-radius: 50px;
@@ -522,24 +522,26 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         @media (max-width: 768px) {
             .unified-contact-main-button {
                 bottom: 80px;
-                right: 15px;
+                right: 25px;
                 padding: 14px 24px;
                 font-size: 15px;
             }
 
             .unified-contact-menu {
                 bottom: 160px;
-                right: 15px;
+                right: 25px;
+                gap: 10px;
             }
 
             .contact-option {
-                padding: 12px 20px;
+                padding: 13px 22px;
                 font-size: 14px;
+                gap: 10px;
             }
 
             .call-indicator {
                 bottom: 80px;
-                right: 15px;
+                right: 25px;
                 padding: 14px 24px;
                 font-size: 15px;
             }
