@@ -94,8 +94,14 @@ Preferred communication style: Simple, everyday language.
   - Vite handles all static file serving and module bundling
 
 ### Deployment Platform
-- **Replit Hosting**: Site is configured for deployment on Replit's hosting service
+- **Replit Hosting**: Site configured for Autoscale deployment
+  - **Deployment Type**: Autoscale (required for Agent-created projects - Static deployment not available)
+  - **Build Command**: `npm run build` - Vite bundles all assets to `dist/` folder
+  - **Run Command**: `npx serve -l 5000` - Serves static files from `dist/` on port 5000
+  - **Production Server**: `serve` package (v14.2.4) for optimized static file delivery
 - **Build Process**: Vite bundles JavaScript modules including @vapi-ai/web dependency
+  - Generates optimized assets with content hashing for cache busting
+  - Bundles all ES modules into single `unified-contact-[hash].js` file (~323 KB)
 
 ### Contact Information
 - Phone: +54 (93465) 432688
@@ -104,6 +110,14 @@ Preferred communication style: Simple, everyday language.
 - Physical Location: Omar Carrasco 2776, Rosario, Argentina
 
 ## Recent Changes (October 2025)
+
+### Autoscale Deployment Configuration (Oct 22, 2025)
+- **Configured Autoscale Deployment**: Required for Agent-created projects
+  - Installed `serve` package (v14.2.4) for production static file serving
+  - Build command: `npm run build` compiles all assets with Vite to `dist/` folder
+  - Run command: `npx serve -l 5000` serves static files on port 5000
+  - Deployment verified and ready to publish
+- **Note**: Static Deployment not available for Agent-created projects - Autoscale is the only supported option
 
 ### Migration to Vite & ES Modules (Oct 21, 2025)
 - **Migrated from CDN to npm-based Vapi SDK**: Resolved module loading issues
