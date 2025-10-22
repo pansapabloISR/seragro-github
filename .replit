@@ -6,7 +6,7 @@ channel = "stable-24_11"
 packages = ["static-web-server"]
 
 [deployment]
-publicDir = "/"
+publicDir = "dist"
 deploymentTarget = "autoscale"
 run = ["npx", "serve", "-l", "5000"]
 build = ["npm", "run", "build"]
@@ -45,4 +45,4 @@ expertMode = true
 
 [[ports]]
 localPort = 5000
-externalPort = 5000
+externalPort = 80
