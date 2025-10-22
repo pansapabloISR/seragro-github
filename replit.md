@@ -120,7 +120,7 @@ Preferred communication style: Simple, everyday language.
 - **Legal Pages for Meta Compliance**: Created dedicated privacy and terms pages
   - `privacidad.html`: Complete privacy policy with data collection, usage, and rights information
   - `terminos.html`: Terms and conditions with service terms, liability, and user responsibilities
-  - **Discrete Footer Links**: Added small, semi-transparent links to all 5 HTML pages for Meta app approval
+  - **Discrete Footer Links**: Added small, semi-transparent links to all 7 HTML pages for Meta app approval
     - Font size: 0.75rem, opacity: 0.7
     - Positioned in existing footer-bottom sections
     - Links styled with `color: inherit` and `text-decoration: none` for subtle appearance
@@ -132,6 +132,10 @@ Preferred communication style: Simple, everyday language.
   - Increased menu option padding from `12px 20px` to `13px 22px`
   - Reduced gap between options from `12px` to `10px` for better visual grouping
   - Icon gap adjusted to `10px` for balanced spacing
+- **Android Viewport Fix**: Resolved button cutoff issue on Android devices
+  - Added `env(safe-area-inset-bottom)` to all floating buttons using calc()
+  - Ensures buttons appear fully visible on Android while maintaining iPhone compatibility
+  - Applied to main button, menu, and call indicator across desktop and mobile breakpoints
 
 ### Autoscale Deployment Configuration (Oct 22, 2025)
 - **Configured Autoscale Deployment**: Required for Agent-created projects
