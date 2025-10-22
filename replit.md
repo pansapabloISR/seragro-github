@@ -99,9 +99,14 @@ Preferred communication style: Simple, everyday language.
   - **Build Command**: `npm run build` - Vite bundles all assets to `dist/` folder
   - **Run Command**: `npx serve -l 5000` - Serves static files from `dist/` on port 5000
   - **Production Server**: `serve` package (v14.2.4) for optimized static file delivery
+  - **⚠️ CONFIGURACIÓN REQUERIDA EN `.replit`**:
+    - `publicDir = "dist"` (NO `/`) - Sirve archivos compilados con JavaScript bundled
+    - `externalPort = 80` (NO `5000`) - Puerto externo requerido para Autoscale
+    - Estas configuraciones son críticas para que los botones aparezcan en producción
 - **Build Process**: Vite bundles JavaScript modules including @vapi-ai/web dependency
   - Generates optimized assets with content hashing for cache busting
   - Bundles all ES modules into single `unified-contact-[hash].js` file (~323 KB)
+  - Incluye todas las páginas HTML: index, T50, T100, Mavic 3, firmware, privacidad, términos
 
 ### Contact Information
 - Phone: +54 (93465) 432688
