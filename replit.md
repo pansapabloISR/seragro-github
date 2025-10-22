@@ -111,6 +111,23 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (October 2025)
 
+### Privacy & Terms Pages + UI Refinements (Oct 22, 2025)
+- **Legal Pages for Meta Compliance**: Created dedicated privacy and terms pages
+  - `privacidad.html`: Complete privacy policy with data collection, usage, and rights information
+  - `terminos.html`: Terms and conditions with service terms, liability, and user responsibilities
+  - **Discrete Footer Links**: Added small, semi-transparent links to all 5 HTML pages for Meta app approval
+    - Font size: 0.75rem, opacity: 0.7
+    - Positioned in existing footer-bottom sections
+    - Links styled with `color: inherit` and `text-decoration: none` for subtle appearance
+- **Contact Button Position Adjustment**: Improved visual balance
+  - Desktop: Moved from `right: 20px` to `right: 35px` (~1cm toward center)
+  - Mobile: Adjusted from `right: 15px` to `right: 25px`
+  - Applied to main button, menu, and call indicator for consistency
+- **Mobile Menu Optimization**: Enhanced touch-friendly design
+  - Increased menu option padding from `12px 20px` to `13px 22px`
+  - Reduced gap between options from `12px` to `10px` for better visual grouping
+  - Icon gap adjusted to `10px` for balanced spacing
+
 ### Autoscale Deployment Configuration (Oct 22, 2025)
 - **Configured Autoscale Deployment**: Required for Agent-created projects
   - Installed `serve` package (v14.2.4) for production static file serving
