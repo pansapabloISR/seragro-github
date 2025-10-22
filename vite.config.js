@@ -16,7 +16,9 @@ export default defineConfig({
         t50: resolve(__dirname, 'dji-agras-t50.html'),
         t100: resolve(__dirname, 'DJI-Agras-T100.html'),
         mavic3: resolve(__dirname, 'dji-mavic-3.html'),
-        firmware: resolve(__dirname, 'firmware-generador.html')
+        firmware: resolve(__dirname, 'firmware-generador.html'),
+        privacidad: resolve(__dirname, 'privacidad.html'),
+        terminos: resolve(__dirname, 'terminos.html')
       }
     }
   }
