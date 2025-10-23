@@ -9,12 +9,13 @@ SER AGRO is a corporate website for an agricultural drone distributor specializi
 Preferred communication style: Simple, everyday language.
 
 ### Critical Configuration Rules
-- **⚠️ NEVER recreate workflows using `workflows_set_run_config_tool`** - this overwrites port mappings
-- **Port Configuration**: Internal port 5000 MUST map to external port 5000 (not :80)
-  - User manually configured this in Networking tool
-  - Always use `restart_workflow` to restart the server, never create new workflows
-  - Port mapping is saved in `.replit` file (lines 46-47: `localPort = 5000, externalPort = 5000`)
-- **Workflow Management**: Only use `restart_workflow("Server")` to restart - NEVER use `workflows_set_run_config_tool`
+- **Port Configuration**: Internal port 5000 maps to external port 80 (configured in `.replit`)
+  - Development: Vite runs on localhost:5000 with HMR (Hot Module Replacement)
+  - Production: `serve` package serves `dist/` folder on port 5000
+- **Workflow Management**: Single "Server" workflow runs `npm run dev` (Vite dev server)
+  - Vite has built-in HMR - server auto-reloads on file changes WITHOUT restarting
+  - Use `restart_workflow("Server")` only when necessary (after config changes, etc.)
+  - Server should NOT stop after code modifications - HMR handles updates automatically
 
 ## System Architecture
 
@@ -89,9 +90,8 @@ Preferred communication style: Simple, everyday language.
   - Processes ES modules and npm packages
   - Dev server runs on port 5000 with HMR (Hot Module Replacement)
   - Configured in `vite.config.js` with host: 0.0.0.0, allowedHosts: true
-- **Server Setup**: `server.py` acts as wrapper to exec `npm run dev`
-  - Ensures compatibility with existing Replit workflow configuration
-  - Vite handles all static file serving and module bundling
+  - Workflow executes `npm run dev` directly (no wrapper needed)
+  - HMR automatically reloads pages on file changes without server restart
 
 ### Deployment Platform
 - **Replit Hosting**: Site configured for Autoscale deployment
