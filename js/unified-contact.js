@@ -496,6 +496,8 @@ function addStyles() {
                 transform: translateX(-50%);
                 padding: 14px 24px;
                 font-size: 15px;
+                max-width: calc(100vw - 40px);
+                white-space: nowrap;
             }
 
             .unified-contact-menu {
@@ -505,6 +507,7 @@ function addStyles() {
                 transform: translateX(-50%);
                 gap: 10px;
                 align-items: center;
+                max-width: calc(100vw - 40px);
             }
 
             .contact-option {
