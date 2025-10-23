@@ -265,6 +265,11 @@ function addStyles() {
             50% { transform: scale(1.05); }
         }
 
+        @keyframes subtlePulseMobile {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+        }
+
         .unified-contact-main-button:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 30px rgba(46, 125, 50, 0.5);
@@ -508,6 +513,7 @@ function addStyles() {
                 width: auto;
                 max-width: calc(100vw - 40px);
                 white-space: nowrap;
+                animation: subtlePulseMobile 2s ease-in-out infinite;
             }
 
             .unified-contact-menu {
