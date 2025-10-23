@@ -131,6 +131,11 @@ Preferred communication style: Simple, everyday language.
   - **Body Scroll Lock**: Bloquea scroll del body durante llamadas para mantener indicador visible
   - **Animación de entrada**: Slide-down suave (0.4s) cuando inicia la llamada
   - **Z-index hierarchy**: Overlay (99998) + Indicator (99999) aseguran visibilidad sobre todo contenido
+- **Botón Principal Centrado en Móviles**: Solucionado problema de recorte en Android
+  - Mobile/Tablet (≤768px): Botón "Hablá con nosotros" centrado horizontalmente usando `left: 50%` + `transform: translateX(-50%)`
+  - Menú de opciones también centrado y alineado con el botón principal
+  - Desktop: Mantiene posicionamiento original a la derecha (`right: 35px`)
+  - Resultado: El botón ya no se corta en ningún dispositivo Android, siempre visible completo
 - **Resultado**: Imposible no ver el botón de colgar en cualquier dispositivo Android o iPhone
 
 ### Privacy & Terms Pages + UI Refinements (Oct 22, 2025)
