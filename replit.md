@@ -116,6 +116,23 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (October 2025)
 
+### Enhanced Call Indicator for Maximum Visibility (Oct 23, 2025)
+- **Full-Screen Call Overlay**: Completamente rediseñado el indicador de llamadas para máxima visibilidad
+  - **Overlay de pantalla completa**: Fondo oscuro semi-transparente (85% opacidad) con blur effect
+  - **Banner superior fijo**: Indicador rojo en la parte superior de la pantalla con gradiente vertical
+  - **Botón de colgar prominente**: 
+    - Desktop: Botón blanco grande con ícono de teléfono y texto "Finalizar llamada"
+    - Mobile: Botón de ancho completo (max-width: 320px) con min-height de 60-64px
+    - Touch-optimized: `touch-action: manipulation` para mejor respuesta táctil
+  - **Safe Area Support**: Implementado `env(safe-area-inset-top)` para iPhone (notch, dynamic island)
+  - **Responsive Design**: 
+    - Tablet (≤768px): Padding y tamaños ajustados para pantallas medianas
+    - Mobile (≤480px): Botón extra grande (64px altura) para fácil acceso con el pulgar
+  - **Body Scroll Lock**: Bloquea scroll del body durante llamadas para mantener indicador visible
+  - **Animación de entrada**: Slide-down suave (0.4s) cuando inicia la llamada
+  - **Z-index hierarchy**: Overlay (99998) + Indicator (99999) aseguran visibilidad sobre todo contenido
+- **Resultado**: Imposible no ver el botón de colgar en cualquier dispositivo Android o iPhone
+
 ### Privacy & Terms Pages + UI Refinements (Oct 22, 2025)
 - **Legal Pages for Meta Compliance**: Created dedicated privacy and terms pages
   - `privacidad.html`: Complete privacy policy with data collection, usage, and rights information
