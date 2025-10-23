@@ -256,6 +256,10 @@ function addStyles() {
             animation: subtlePulse 2s ease-in-out infinite;
         }
 
+        .unified-contact-main-button span {
+            flex: 0 0 auto;
+        }
+
         @keyframes subtlePulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -307,6 +311,10 @@ function addStyles() {
             font-family: 'Open Sans', sans-serif;
             opacity: 0;
             transform: translateX(20px);
+        }
+
+        .contact-option span {
+            flex: 0 0 auto;
         }
 
         .unified-contact-menu.show .contact-option {
@@ -497,7 +505,8 @@ function addStyles() {
                 padding: 14px 24px;
                 font-size: 15px;
                 box-sizing: border-box;
-                width: min(calc(100vw - 40px), 360px);
+                width: auto;
+                max-width: calc(100vw - 40px);
                 white-space: nowrap;
             }
 
@@ -509,7 +518,8 @@ function addStyles() {
                 gap: 10px;
                 align-items: center;
                 box-sizing: border-box;
-                width: min(calc(100vw - 40px), 360px);
+                width: auto;
+                max-width: calc(100vw - 40px);
             }
 
             .contact-option {
