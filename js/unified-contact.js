@@ -496,7 +496,8 @@ function addStyles() {
                 transform: translateX(-50%);
                 padding: 14px 24px;
                 font-size: 15px;
-                max-width: calc(100vw - 40px);
+                box-sizing: border-box;
+                width: min(calc(100vw - 40px), 360px);
                 white-space: nowrap;
             }
 
@@ -507,7 +508,8 @@ function addStyles() {
                 transform: translateX(-50%);
                 gap: 10px;
                 align-items: center;
-                max-width: calc(100vw - 40px);
+                box-sizing: border-box;
+                width: min(calc(100vw - 40px), 360px);
             }
 
             .contact-option {
