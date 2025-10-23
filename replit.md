@@ -36,7 +36,7 @@ Preferred communication style: Simple, everyday language.
     - **WhatsApp**: Direct messaging.
     - **Chat**: Opens the Mavilda AI assistant widget.
     - **Llamar**: Initiates a voice call via Vapi AI.
-    - **Android Fix**: Uses `flex: 0 0 auto` on text spans and `width: auto` with `max-width` to prevent text cutoff on Android devices with wider fonts (Roboto). The flex-shrink prevention ensures "Hablá con nosotros" displays completely regardless of font metrics.
+    - **Android Fix**: Uses a mobile-specific `subtlePulseMobile` animation that combines `translateX(-50%)` with `scale()` to maintain button centering during the pulse animation. The standard `subtlePulse` animation was overwriting the `transform: translateX(-50%)` centering, causing the button to drift right and text to be cut off on Android devices with wider Roboto fonts. The mobile-specific keyframes preserve both the centering transform and the pulse effect simultaneously.
 - **Call Indicator**: A red, full-screen overlay with a prominent "Finalizar llamada" button appears during active voice calls.
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
 
