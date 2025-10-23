@@ -491,15 +491,20 @@ function addStyles() {
         @media (max-width: 768px) {
             .unified-contact-main-button {
                 bottom: calc(100px + env(safe-area-inset-bottom, 0px));
-                right: 25px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
                 padding: 14px 24px;
                 font-size: 15px;
             }
 
             .unified-contact-menu {
                 bottom: calc(180px + env(safe-area-inset-bottom, 0px));
-                right: 25px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
                 gap: 10px;
+                align-items: center;
             }
 
             .contact-option {
