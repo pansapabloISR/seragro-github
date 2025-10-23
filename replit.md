@@ -39,8 +39,7 @@ Preferred communication style: Simple, everyday language.
     - **Android Fix**: Uses a mobile-specific `subtlePulseMobile` animation that combines `translateX(-50%)` with `scale()` to maintain button centering during the pulse animation. The standard `subtlePulse` animation was overwriting the `transform: translateX(-50%)` centering, causing the button to drift right and text to be cut off on Android devices with wider Roboto fonts. The mobile-specific keyframes preserve both the centering transform and the pulse effect simultaneously.
 - **Call Indicator**: A red, full-screen overlay with a prominent "Finalizar llamada" button appears during active voice calls.
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
-    - **Mobile Optimization**: Chat window centered on mobile devices using `left: 50%` + `translateX(-50%)`, consistent with the contact button positioning.
-    - **Keyboard Adaptation**: Height adjusted to `max-height: 500px` and `calc(100vh - 180px)` to accommodate Android keyboard without cutting off the chat interface.
+    - **Mobile Optimization**: Chat window positioned on the right side on mobile devices (max-width: 480px) with dimensions `calc(100vw - 20px)` width and `calc(100vh - 120px)` height to accommodate the Android keyboard while keeping the entire chat interface visible during user interaction.
     - **Image URL Fix**: Profile image URL-encoded (`mavilda%20ingeniera%20agronoma.png`) to resolve loading issues on Android browsers with spaces in filenames.
 
 ### Styling Approach
