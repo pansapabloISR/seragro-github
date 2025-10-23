@@ -516,6 +516,10 @@ function addStyles() {
                 animation: subtlePulseMobile 2s ease-in-out infinite;
             }
 
+            .unified-contact-main-button:hover {
+                transform: translateX(-50%) translateY(-3px) scale(1.05);
+            }
+
             .unified-contact-menu {
                 bottom: calc(180px + env(safe-area-inset-bottom, 0px));
                 left: 50%;
