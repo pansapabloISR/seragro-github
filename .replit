@@ -12,7 +12,7 @@ run = ["npx", "serve", "dist", "-l", "5000"]
 build = ["npm", "run", "build"]
 
 [workflows]
-runButton = "Project"
+runButton = "Server"
 
 [[workflows.workflow]]
 name = "Server"
@@ -46,7 +46,3 @@ expertMode = true
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 33965
-externalPort = 3000
