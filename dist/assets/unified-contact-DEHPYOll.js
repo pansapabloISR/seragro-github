@@ -705,6 +705,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             padding: 11px 14px;
             font-size: 12px;
             min-height: 44px;
+            width: 75px;
         }
 
         @media (max-width: 768px) {
@@ -712,6 +713,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 padding: 11px 12px;
                 font-size: 12px;
                 min-height: 44px;
+                width: 75px;
             }
         }
 
@@ -720,6 +722,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 padding: 11px 10px;
                 font-size: 11px;
                 min-height: 44px;
+                width: 75px;
             }
         }
     `,e=document.createElement("style");e.textContent=t,document.head.appendChild(e)}function kn(){const t=document.getElementById("unified-contact-button"),e=document.getElementById("unified-contact-menu");Jn=!Jn,Jn?(e.classList.add("show"),t.classList.add("menu-open")):(e.classList.remove("show"),t.classList.remove("menu-open"))}function Mu(){const t=`https://api.whatsapp.com/send?phone=${be.whatsappPhone}&text=${encodeURIComponent(be.whatsappMessage)}`;window.open(t,"_blank"),kn()}function Pu(){kn(),Ls(),window.MavildaChat&&typeof window.MavildaChat.open=="function"&&window.MavildaChat.open()}async function Iu(){kn();try{const t=Is();console.log("🎯 Iniciando llamada con Vapi..."),await t.start(be.vapiAssistantId)}catch(t){console.error("❌ Error al iniciar llamada:",t),alert("No se pudo iniciar la llamada. Por favor, intentá de nuevo."),kr()}}function Lu(){if(Re&&rn)try{Re.stop(),console.log("✅ Llamada detenida por el usuario")}catch(t){console.error("❌ Error al detener llamada:",t)}}function Du(){/Android/i.test(navigator.userAgent)&&document.documentElement.classList.add("is-android")}function qa(){ku(),Du(),Cu(),Tu(),Ou(),Au(),Is(),console.log("✅ Sistema de comunicación unificado cargado correctamente")}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",qa):qa();
