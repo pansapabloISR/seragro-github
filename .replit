@@ -12,7 +12,7 @@ run = ["npx", "serve", "dist", "-l", "5000"]
 build = ["npm", "run", "build"]
 
 [workflows]
-runButton = "Server"
+runButton = "Project"
 
 [[workflows.workflow]]
 name = "Server"
