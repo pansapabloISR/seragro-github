@@ -390,12 +390,12 @@ function addStyles() {
 
         .call-indicator {
             position: fixed;
-            bottom: 0;
+            bottom: 20px;
             left: 0;
             right: 0;
             background: linear-gradient(180deg, #d32f2f 0%, #c62828 100%);
             color: white;
-            padding: 20px 20px max(env(safe-area-inset-bottom, 20px), 20px) 20px;
+            padding: 14px 20px max(env(safe-area-inset-bottom, 20px), 20px) 20px;
             box-shadow: 0 -8px 32px rgba(211, 47, 47, 0.6);
             display: none;
             z-index: 99999;
@@ -462,32 +462,35 @@ function addStyles() {
         }
 
         .end-call-btn {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+            background: white;
+            color: #d32f2f;
+            border: none;
             border-radius: 50px;
-            padding: 12px 32px;
+            padding: 10px 28px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
             align-items: center;
             gap: 8px;
-            min-height: 48px;
+            min-height: 40px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .end-call-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: #f5f5f5;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
         }
 
         .end-call-btn:active {
             transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .vapi-btn {
@@ -535,7 +538,8 @@ function addStyles() {
             }
 
             .call-indicator {
-                padding: 16px 16px max(env(safe-area-inset-bottom, 20px), 20px) 16px;
+                padding: 12px 16px max(env(safe-area-inset-bottom, 18px), 18px) 16px;
+                bottom: 16px;
             }
 
             .call-status {
@@ -543,33 +547,30 @@ function addStyles() {
             }
 
             .end-call-btn {
-                width: 100%;
-                max-width: 320px;
-                padding: 18px 32px;
-                font-size: 17px;
-                min-height: 60px;
-                justify-content: center;
+                padding: 10px 24px;
+                font-size: 14px;
+                min-height: 38px;
             }
         }
 
         @media (max-width: 480px) {
             .call-indicator-content {
-                gap: 16px;
+                gap: 12px;
             }
 
             .call-status {
-                font-size: 15px;
+                font-size: 14px;
             }
 
             .end-call-btn {
-                padding: 20px 28px;
-                font-size: 16px;
-                min-height: 64px;
+                padding: 9px 20px;
+                font-size: 13px;
+                min-height: 36px;
             }
 
             .pulse-dot {
-                width: 14px;
-                height: 14px;
+                width: 12px;
+                height: 12px;
             }
         }
     `;
