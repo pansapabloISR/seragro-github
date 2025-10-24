@@ -596,6 +596,28 @@ function addStyles() {
                 height: 12px;
             }
         }
+
+        .is-android .call-indicator .end-call-btn {
+            padding: 11px 14px;
+            font-size: 12px;
+            min-height: 44px;
+        }
+
+        @media (max-width: 768px) {
+            .is-android .call-indicator .end-call-btn {
+                padding: 11px 12px;
+                font-size: 12px;
+                min-height: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .is-android .call-indicator .end-call-btn {
+                padding: 11px 10px;
+                font-size: 11px;
+                min-height: 44px;
+            }
+        }
     `;
 
     const styleSheet = document.createElement('style');
@@ -668,10 +690,21 @@ function endCall() {
 }
 
 // ==========================================
+// DETECTAR ANDROID
+// ==========================================
+function detectAndroid() {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    if (isAndroid) {
+        document.documentElement.classList.add('is-android');
+    }
+}
+
+// ==========================================
 // INICIALIZACIÓN
 // ==========================================
 function init() {
     clearCacheAndServiceWorkers();
+    detectAndroid();
     createMainButton();
     createOptionsMenu();
     createCallIndicator();
