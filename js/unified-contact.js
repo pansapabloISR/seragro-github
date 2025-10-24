@@ -601,6 +601,7 @@ function addStyles() {
             padding: 11px 14px;
             font-size: 12px;
             min-height: 44px;
+            width: 75px;
         }
 
         @media (max-width: 768px) {
@@ -608,6 +609,7 @@ function addStyles() {
                 padding: 11px 12px;
                 font-size: 12px;
                 min-height: 44px;
+                width: 75px;
             }
         }
 
@@ -616,6 +618,7 @@ function addStyles() {
                 padding: 11px 10px;
                 font-size: 11px;
                 min-height: 44px;
+                width: 75px;
             }
         }
     `;
