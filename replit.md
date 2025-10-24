@@ -49,7 +49,11 @@ Preferred communication style: Simple, everyday language.
 - **Video Backgrounds**: Full-screen video heroes with overlay content.
 
 ### Asset Management
-- **Static Assets**: Images in `/imagenes/`, PDF datasheets in `/attached_assets/`.
+- **Static Assets**: All static assets (images, videos, PDFs) are stored in the `public/` directory for proper Vite build handling:
+  - Images: `public/imagenes/`
+  - Videos: `public/videos/`
+  - PDF datasheets: `public/attached_assets/`
+- Vite automatically copies the `public/` directory contents to the production build, ensuring assets are available in both development and production environments.
 
 ## External Dependencies
 
