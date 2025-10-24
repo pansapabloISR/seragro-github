@@ -541,10 +541,28 @@ function addStyles() {
             }
 
             .call-indicator {
-                padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)) 16px;
-                bottom: 50px;
+                padding: 12px 16px 12px 16px;
+                top: 50%;
+                bottom: auto;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: calc(100% - 32px);
                 max-width: 500px;
+            }
+
+            .call-indicator.active {
+                animation: fadeInCenter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            @keyframes fadeInCenter {
+                from {
+                    transform: translate(-50%, -50%) scale(0.9);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
             }
 
             .call-status {
