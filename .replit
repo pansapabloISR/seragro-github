@@ -13,7 +13,7 @@ deploymentTarget = "static"
 runButton = "Project"
 
 [[workflows.workflow]]
-name = "Python Server"
+name = "Server"
 mode = "parallel"
 author = "agent"
 
@@ -26,7 +26,7 @@ waitForPort = 5000
 outputType = "webview"
 
 [[workflows.workflow]]
-name = "Vite Dev Server"
+name = "Server"
 mode = "parallel"
 author = "agent"
 
@@ -42,5 +42,17 @@ outputType = "webview"
 expertMode = true
 
 [[ports]]
+localPort = 80
+externalPort = 5000
+
+[[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 37061
+externalPort = 3001
+
+[[ports]]
+localPort = 41949
+externalPort = 3000
