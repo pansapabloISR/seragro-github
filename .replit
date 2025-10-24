@@ -6,13 +6,11 @@ channel = "stable-24_11"
 packages = ["static-web-server"]
 
 [deployment]
-publicDir = "dist"
-deploymentTarget = "autoscale"
-run = ["npx", "serve", "dist", "-l", "5000"]
-build = ["npm", "run", "build"]
+publicDir = "/"
+deploymentTarget = "static"
 
 [workflows]
-runButton = "Server"
+runButton = "Project"
 
 [[workflows.workflow]]
 name = "Server"
@@ -21,7 +19,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
+args = "python3 server.py"
 waitForPort = 5000
 
 [workflows.workflow.metadata]
@@ -44,9 +42,13 @@ outputType = "webview"
 expertMode = true
 
 [[ports]]
+localPort = 80
+externalPort = 5000
+
+[[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 44625
+localPort = 41949
 externalPort = 3000
