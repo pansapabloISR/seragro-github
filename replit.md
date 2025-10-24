@@ -37,10 +37,10 @@ Preferred communication style: Simple, everyday language.
     - **Chat**: Opens the Mavilda AI assistant widget.
     - **Llamar**: Initiates a voice call via Vapi AI.
     - **Android Fix**: Uses a mobile-specific `subtlePulseMobile` animation that combines `translateX(-50%)` with `scale()` to maintain button centering during the pulse animation. The standard `subtlePulse` animation was overwriting the `transform: translateX(-50%)` centering, causing the button to drift right and text to be cut off on Android devices with wider Roboto fonts. The mobile-specific keyframes preserve both the centering transform and the pulse effect simultaneously.
-    - **Mobile Button Positioning**: Contact button positioned at `left: calc(48% - 15px)` in mobile view, moved 15px left for optimal visual centering on Android devices.
+    - **Mobile Button Positioning**: Contact button positioned at `left: 50%` with `transform: translateX(-50%)` in mobile view for proper centering.
 - **Call Indicator**: A red, full-screen overlay with a prominent "Finalizar llamada" button appears during active voice calls.
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
-    - **Logo Fix**: Image path uses leading slash (`/imagenes/mavilda ingeniera agronoma.png`) to work correctly with Vite's module resolution system.
+    - **Logo Fix**: Image path uses URL encoding (`/imagenes/mavilda%20ingeniera%20agronoma.png`) to handle spaces in filename correctly with Vite's module resolution system.
     - **Mobile Optimization**: Uses `@media (max-width: 768px)` with centered layout (`left: 50%` + `transform: translateX(-50%)`), `max-height: 280px` to prevent compression when Android keyboard appears, and `env(safe-area-inset-bottom)` for proper keyboard handling. This ensures the Mavilda logo remains visible and chat content doesn't get cut off when user is typing on mobile devices.
 
 ### Styling Approach
