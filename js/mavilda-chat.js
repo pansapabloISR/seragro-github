@@ -30,7 +30,7 @@ function createChatWidget() {
             <div id="mavilda-chat-window" style="display: none;">
                 <div id="mavilda-chat-header">
                     <div class="header-content">
-                        <img src="imagenes/mavilda ingeniera agronoma.png" alt="Mavilda" class="chat-logo">
+                        <img src="/imagenes/mavilda ingeniera agronoma.png" alt="Mavilda" class="chat-logo">
                         <div class="header-text">
                             <strong>Mavilda</strong>
                             <span>Ingeniera Agrónoma</span>
@@ -282,7 +282,7 @@ function addStyles() {
             #mavilda-chat-window {
                 width: calc(100vw - 32px);
                 height: calc(100vh - 180px);
-                max-height: 500px;
+                max-height: 280px;
                 left: 50%;
                 right: auto;
                 transform: translateX(-50%);

@@ -504,7 +504,7 @@ function addStyles() {
         @media (max-width: 768px) {
             .unified-contact-main-button {
                 bottom: calc(100px + env(safe-area-inset-bottom, 0px));
-                left: 48%;
+                left: calc(48% - 15px);
                 right: auto;
                 transform: translateX(-50%);
                 padding: 14px 24px;
