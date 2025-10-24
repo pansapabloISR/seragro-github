@@ -50,6 +50,7 @@ Preferred communication style: Simple, everyday language.
     - Compact vertical padding (14px top on desktop, 12px on mobile) for sleek appearance
     - Desktop: Slide-up animation with `translate(-50%, Y)`
     - Mobile: Fade-in animation from center with scale effect (`fadeInCenter`) for smooth appearance
+    - **Android-Specific Optimization**: User-Agent detection adds `is-android` class to `<html>` element. CSS rule `.is-android .call-indicator .end-call-btn` applies compact padding (11px 14px on desktop, 11px 12px tablet, 11px 10px mobile) and smaller font-size (12px desktop, 11px mobile) to prevent button text overflow on Android devices with wider system fonts like Roboto.
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
     - **Logo Fix**: Image renamed to `mavilda-logo.png` (without spaces) to ensure compatibility in both development and production builds. Path: `/imagenes/mavilda-logo.png`
     - **Mobile Optimization**: Uses `@media (max-width: 768px)` with centered layout (`left: 50%` + `transform: translateX(-50%)`), `max-height: 280px` to prevent compression when Android keyboard appears, and `env(safe-area-inset-bottom)` for proper keyboard handling. This ensures the Mavilda logo remains visible and chat content doesn't get cut off when user is typing on mobile devices.
@@ -82,3 +83,18 @@ Preferred communication style: Simple, everyday language.
 ### Build & Development
 - **Vite**: Frontend build tool and dev server (v7.1.11), configured for ES module processing, HMR, and multi-page application bundling.
 - **Deployment Platform**: Replit Autoscale deployment, using `npm run build` for compilation to `dist/` and `npx serve -l 5000` for serving static files. Configuration in `.replit` specifies `publicDir = "dist"` and `externalPort = 80`.
+
+### Critical Development Workflow
+**IMPORTANT**: Changes to source files (`js/`, `index.html`, etc.) do NOT automatically appear in production.
+
+**Development vs Production Environments**:
+- **Development** (`npm run dev`): Runs Vite dev server on port 5000 with HMR. Changes to source files are immediately visible.
+- **Production** (Replit deployment): Serves pre-compiled static files from `dist/` folder.
+
+**Required Steps to Deploy Changes**:
+1. Modify source files in `js/`, `index.html`, etc.
+2. **MUST RUN**: `npm run build` to compile changes into `dist/` folder
+3. Verify compiled files in `dist/assets/` contain the changes (use `grep` to confirm)
+4. Deploy using Replit's deployment system (serves files from `dist/`)
+
+**Common Mistake**: Modifying source code and testing in production without running `npm run build` first. The production site will continue serving old compiled files from `dist/` until a new build is executed.
