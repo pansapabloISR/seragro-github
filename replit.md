@@ -40,7 +40,7 @@ Preferred communication style: Simple, everyday language.
     - **Mobile Button Positioning**: Contact button positioned at `left: 50%` with `transform: translateX(-50%)` in mobile view for proper centering.
 - **Call Indicator**: A red, full-screen overlay with a prominent "Finalizar llamada" button appears during active voice calls.
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
-    - **Logo Fix**: Image path uses URL encoding (`/imagenes/mavilda%20ingeniera%20agronoma.png`) to handle spaces in filename correctly with Vite's module resolution system.
+    - **Logo Fix**: Image renamed to `mavilda-logo.png` (without spaces) to ensure compatibility in both development and production builds. Path: `/imagenes/mavilda-logo.png`
     - **Mobile Optimization**: Uses `@media (max-width: 768px)` with centered layout (`left: 50%` + `transform: translateX(-50%)`), `max-height: 280px` to prevent compression when Android keyboard appears, and `env(safe-area-inset-bottom)` for proper keyboard handling. This ensures the Mavilda logo remains visible and chat content doesn't get cut off when user is typing on mobile devices.
 
 ### Styling Approach
