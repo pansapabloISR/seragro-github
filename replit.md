@@ -38,11 +38,13 @@ Preferred communication style: Simple, everyday language.
     - **Llamar**: Initiates a voice call via Vapi AI.
     - **Android Fix**: Uses a mobile-specific `subtlePulseMobile` animation that combines `translateX(-50%)` with `scale()` to maintain button centering during the pulse animation. The standard `subtlePulse` animation was overwriting the `transform: translateX(-50%)` centering, causing the button to drift right and text to be cut off on Android devices with wider Roboto fonts. The mobile-specific keyframes preserve both the centering transform and the pulse effect simultaneously.
     - **Mobile Button Positioning**: Contact button positioned at `left: 50%` with `transform: translateX(-50%)` in mobile view for proper centering.
-- **Call Indicator**: A horizontal red banner at the top of the screen during active voice calls, featuring:
+- **Call Indicator**: A horizontal red banner at the bottom of the screen during active voice calls, featuring:
     - Left side: Pulsing white dot with "En llamada..." status text
     - Right side: "Colgar" button with transparent background and white border
     - Full-screen dark overlay behind the indicator for focus
     - Horizontal layout (`flex-direction: row`, `justify-content: space-between`) with 800px max-width
+    - Bottom positioning with `safe-area-inset-bottom` to prevent clipping on Android devices with navigation bars
+    - Slide-up animation (enters from bottom) for smooth appearance
     - Responsive design maintains horizontal alignment on mobile devices
 - **Mavilda Chat Widget**: An AI-powered, session-based customer support chat with a webhook integration for backend processing and auto-greeting.
     - **Logo Fix**: Image renamed to `mavilda-logo.png` (without spaces) to ensure compatibility in both development and production builds. Path: `/imagenes/mavilda-logo.png`
