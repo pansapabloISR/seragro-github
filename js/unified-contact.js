@@ -390,27 +390,30 @@ function addStyles() {
 
         .call-indicator {
             position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 600px;
             background: linear-gradient(180deg, #d32f2f 0%, #c62828 100%);
             color: white;
-            padding: 14px 20px max(env(safe-area-inset-bottom, 20px), 20px) 20px;
-            box-shadow: 0 -8px 32px rgba(211, 47, 47, 0.6);
+            padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px)) 20px;
+            box-shadow: 0 8px 24px rgba(211, 47, 47, 0.5);
             display: none;
             z-index: 99999;
             font-family: 'Open Sans', sans-serif;
             font-weight: 600;
             animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50px;
         }
 
         @keyframes slideUp {
             from {
-                transform: translateY(100%);
+                transform: translate(-50%, 100%);
                 opacity: 0;
             }
             to {
-                transform: translateY(0);
+                transform: translate(-50%, 0);
                 opacity: 1;
             }
         }
@@ -538,8 +541,10 @@ function addStyles() {
             }
 
             .call-indicator {
-                padding: 12px 16px max(env(safe-area-inset-bottom, 18px), 18px) 16px;
-                bottom: 16px;
+                padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)) 16px;
+                bottom: 50px;
+                width: calc(100% - 32px);
+                max-width: 500px;
             }
 
             .call-status {
