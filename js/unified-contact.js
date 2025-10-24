@@ -390,23 +390,23 @@ function addStyles() {
 
         .call-indicator {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(180deg, #d32f2f 0%, #c62828 100%);
             color: white;
-            padding: max(env(safe-area-inset-top, 20px), 20px) 20px 24px 20px;
-            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.6);
+            padding: 20px 20px max(env(safe-area-inset-bottom, 20px), 20px) 20px;
+            box-shadow: 0 -8px 32px rgba(211, 47, 47, 0.6);
             display: none;
             z-index: 99999;
             font-family: 'Open Sans', sans-serif;
             font-weight: 600;
-            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes slideDown {
+        @keyframes slideUp {
             from {
-                transform: translateY(-100%);
+                transform: translateY(100%);
                 opacity: 0;
             }
             to {
@@ -535,7 +535,7 @@ function addStyles() {
             }
 
             .call-indicator {
-                padding: max(env(safe-area-inset-top, 16px), 16px) 16px 20px 16px;
+                padding: 16px 16px max(env(safe-area-inset-bottom, 20px), 20px) 16px;
             }
 
             .call-status {
