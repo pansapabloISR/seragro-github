@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
   server: {
@@ -11,14 +12,13 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        'unified-contact': './js/unified-contact.js',
-        'mavilda-chat': './js/mavilda-chat.js',
-        'main-app': './main-app.js'
-      },
-      output: {
-        entryFileNames: 'js/[name].js',
-        chunkFileNames: 'js/[name]-[hash].js',
-        assetFileNames: '[name].[ext]'
+        main: resolve(__dirname, 'index.html'),
+        t50: resolve(__dirname, 'dji-agras-t50.html'),
+        t100: resolve(__dirname, 'DJI-Agras-T100.html'),
+        mavic3: resolve(__dirname, 'dji-mavic-3.html'),
+        firmware: resolve(__dirname, 'firmware-generador.html'),
+        privacidad: resolve(__dirname, 'privacidad.html'),
+        terminos: resolve(__dirname, 'terminos.html')
       }
     }
   }

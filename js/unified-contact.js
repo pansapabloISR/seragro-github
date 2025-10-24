@@ -54,16 +54,28 @@ function initVapiClient() {
 // ==========================================
 function showCallIndicator() {
     const indicator = document.getElementById('call-indicator');
+    const overlay = document.getElementById('call-overlay');
     const mainButton = document.getElementById('unified-contact-button');
+    
     if (indicator) indicator.classList.add('active');
+    if (overlay) overlay.classList.add('active');
     if (mainButton) mainButton.style.display = 'none';
+    
+    // Bloquear scroll del body
+    document.body.style.overflow = 'hidden';
 }
 
 function hideCallIndicator() {
     const indicator = document.getElementById('call-indicator');
+    const overlay = document.getElementById('call-overlay');
     const mainButton = document.getElementById('unified-contact-button');
+    
     if (indicator) indicator.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
     if (mainButton) mainButton.style.display = 'flex';
+    
+    // Restaurar scroll del body
+    document.body.style.overflow = '';
 }
 
 // ==========================================
@@ -186,15 +198,28 @@ function createOptionsMenu() {
 // CREAR INDICADOR DE LLAMADA
 // ==========================================
 function createCallIndicator() {
+    // Crear overlay de fondo
+    const overlay = document.createElement('div');
+    overlay.id = 'call-overlay';
+    overlay.className = 'call-overlay';
+    
+    // Crear indicador de llamada
     const indicator = document.createElement('div');
     indicator.id = 'call-indicator';
     indicator.className = 'call-indicator';
     indicator.innerHTML = `
-        <div class="pulse-dot"></div>
-        <span>En llamada...</span>
-        <button class="end-call-btn" id="end-call-btn">Colgar</button>
+        <div class="call-indicator-content">
+            <div class="call-status">
+                <div class="pulse-dot"></div>
+                <span class="call-text">En llamada...</span>
+            </div>
+            <button class="end-call-btn" id="end-call-btn">
+                Colgar
+            </button>
+        </div>
     `;
     
+    document.body.appendChild(overlay);
     document.body.appendChild(indicator);
     
     // Agregar evento al botón de colgar
@@ -208,8 +233,8 @@ function addStyles() {
     const styles = `
         .unified-contact-main-button {
             position: fixed;
-            bottom: 100px;
-            right: 20px;
+            bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+            right: 35px;
             background: linear-gradient(135deg, ${CONFIG.primaryColor} 0%, ${CONFIG.secondaryColor} 100%);
             color: white;
             border: none;
@@ -228,9 +253,18 @@ function addStyles() {
             animation: subtlePulse 2s ease-in-out infinite;
         }
 
+        .unified-contact-main-button span {
+            flex: 0 0 auto;
+        }
+
         @keyframes subtlePulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+
+        @keyframes subtlePulseMobile {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
         }
 
         .unified-contact-main-button:hover {
@@ -245,8 +279,8 @@ function addStyles() {
 
         .unified-contact-menu {
             position: fixed;
-            bottom: 180px;
-            right: 20px;
+            bottom: calc(180px + env(safe-area-inset-bottom, 0px));
+            right: 35px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -279,6 +313,10 @@ function addStyles() {
             font-family: 'Open Sans', sans-serif;
             opacity: 0;
             transform: translateX(20px);
+        }
+
+        .contact-option span {
+            flex: 0 0 auto;
         }
 
         .unified-contact-menu.show .contact-option {
@@ -333,36 +371,86 @@ function addStyles() {
             fill: #1976D2;
         }
 
+        .call-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99998;
+            display: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .call-overlay.active {
+            display: block;
+        }
+
         .call-indicator {
             position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 600px;
+            background: linear-gradient(180deg, #d32f2f 0%, #c62828 100%);
             color: white;
-            border-radius: 50px;
-            padding: 16px 20px;
-            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.4);
+            padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px)) 20px;
+            box-shadow: 0 8px 24px rgba(211, 47, 47, 0.5);
             display: none;
-            align-items: center;
-            gap: 8px;
-            z-index: 9999;
+            z-index: 99999;
             font-family: 'Open Sans', sans-serif;
             font-weight: 600;
-            max-width: calc(100vw - 40px);
-            white-space: nowrap;
-            overflow: visible;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50px;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
         }
 
         .call-indicator.active {
+            display: block;
+        }
+
+        .call-indicator-content {
+            max-width: 800px;
+            margin: 0 auto;
             display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .call-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+        }
+
+        .call-text {
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .pulse-dot {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             background: white;
             border-radius: 50%;
             animation: pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
         }
 
         @keyframes pulse {
@@ -371,30 +459,41 @@ function addStyles() {
                 opacity: 1;
             }
             50% {
-                transform: scale(1.3);
-                opacity: 0.7;
+                transform: scale(1.4);
+                opacity: 0.6;
             }
         }
 
         .end-call-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            color: white;
-            border-radius: 25px;
-            padding: 8px 16px;
-            margin-left: 8px;
+            background: white;
+            color: #d32f2f;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 28px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
-            flex-shrink: 0;
-            min-width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 40px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .end-call-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            background: #f5f5f5;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .end-call-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .vapi-btn {
@@ -406,40 +505,77 @@ function addStyles() {
 
         @media (max-width: 768px) {
             .unified-contact-main-button {
-                bottom: 80px;
-                right: 15px;
+                bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
                 padding: 14px 24px;
                 font-size: 15px;
+                box-sizing: border-box;
+                width: auto;
+                max-width: calc(100vw - 40px);
+                white-space: nowrap;
+                animation: subtlePulseMobile 2s ease-in-out infinite;
+            }
+
+            .unified-contact-main-button:hover {
+                transform: translateX(-50%) translateY(-3px) scale(1.05);
             }
 
             .unified-contact-menu {
-                bottom: 160px;
-                right: 15px;
+                bottom: calc(180px + env(safe-area-inset-bottom, 0px));
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                gap: 10px;
+                align-items: center;
+                box-sizing: border-box;
+                width: auto;
+                max-width: calc(100vw - 40px);
             }
 
             .contact-option {
-                padding: 12px 20px;
+                padding: 13px 22px;
                 font-size: 14px;
+                gap: 10px;
             }
 
             .call-indicator {
-                bottom: 80px;
-                right: 15px;
-                padding: 14px 18px;
-                gap: 6px;
-                font-size: 14px;
-                border-radius: 40px;
+                padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)) 16px;
+                bottom: 50px;
+                width: calc(100% - 32px);
+                max-width: 500px;
+            }
+
+            .call-status {
+                font-size: 16px;
             }
 
             .end-call-btn {
-                padding: 6px 12px;
+                padding: 10px 24px;
+                font-size: 14px;
+                min-height: 38px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .call-indicator-content {
+                gap: 12px;
+            }
+
+            .call-status {
+                font-size: 14px;
+            }
+
+            .end-call-btn {
+                padding: 9px 20px;
                 font-size: 13px;
-                margin-left: 6px;
+                min-height: 36px;
             }
 
             .pulse-dot {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
             }
         }
     `;
