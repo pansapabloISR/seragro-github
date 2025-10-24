@@ -278,12 +278,15 @@ function addStyles() {
         }
 
         /* Responsive */
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             #mavilda-chat-window {
-                width: calc(100vw - 20px);
-                height: calc(100vh - 120px);
-                right: 10px;
-                bottom: 70px;
+                width: calc(100vw - 32px);
+                height: calc(100vh - 180px);
+                max-height: 500px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                bottom: calc(90px + env(safe-area-inset-bottom, 0px));
             }
         }
     `;
