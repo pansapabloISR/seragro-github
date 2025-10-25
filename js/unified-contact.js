@@ -433,13 +433,13 @@ function addStyles() {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 0;  /* CAMBIADO de 8px a 0 - junta elementos para Android */
         }
 
         .call-status {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-size: 18px;
         }
 
@@ -511,6 +511,25 @@ function addStyles() {
             pointer-events: none !important;
         }
 
+        /* Estilos específicos para Android - sin gaps */
+        .is-android .call-indicator-content {
+            gap: 4px !important;
+        }
+
+        .is-android .call-status {
+            gap: 6px !important;
+        }
+
+        .is-android .end-call-btn {
+            padding: 10px 10px;
+            font-size: 12px;
+            min-height: 44px;
+            letter-spacing: -0.8px;
+            min-width: 65px;
+            max-width: 90px;
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
             .unified-contact-main-button {
                 bottom: calc(100px + env(safe-area-inset-bottom, 0px));
@@ -573,8 +592,13 @@ function addStyles() {
                 }
             }
 
+            .call-indicator-content {
+                gap: 6px !important;
+            }
+
             .call-status {
                 font-size: 16px;
+                gap: 8px;
             }
 
             .end-call-btn {
@@ -584,15 +608,33 @@ function addStyles() {
                 min-width: 70px;
                 max-width: 100px;
             }
+
+            .is-android .call-indicator-content {
+                gap: 3px !important;
+            }
+
+            .is-android .call-status {
+                gap: 5px !important;
+            }
+
+            .is-android .end-call-btn {
+                padding: 9px 8px;
+                font-size: 11px;
+                min-height: 42px;
+                letter-spacing: -1px;
+                min-width: 60px;
+                max-width: 85px;
+            }
         }
 
         @media (max-width: 480px) {
             .call-indicator-content {
-                gap: 8px;
+                gap: 5px !important;
             }
 
             .call-status {
                 font-size: 14px;
+                gap: 7px;
             }
 
             .end-call-btn {
@@ -608,36 +650,21 @@ function addStyles() {
                 width: 12px;
                 height: 12px;
             }
-        }
 
-        .is-android .call-indicator .end-call-btn {
-            padding: 10px 8px;
-            font-size: 11px;
-            min-height: 44px;
-            letter-spacing: -1px;
-            min-width: 60px;
-            max-width: 85px;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .is-android .call-indicator .end-call-btn {
-                padding: 9px 6px;
-                font-size: 10px;
-                min-height: 42px;
-                letter-spacing: -1px;
-                min-width: 55px;
-                max-width: 80px;
+            .is-android .call-indicator-content {
+                gap: 2px !important;
             }
-        }
 
-        @media (max-width: 480px) {
-            .is-android .call-indicator .end-call-btn {
-                padding: 8px 5px;
+            .is-android .call-status {
+                gap: 4px !important;
+            }
+
+            .is-android .end-call-btn {
+                padding: 8px 6px;
                 font-size: 10px;
                 min-height: 40px;
                 letter-spacing: -1px;
-                min-width: 50px;
+                min-width: 55px;
                 max-width: 75px;
             }
         }
