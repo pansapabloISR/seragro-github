@@ -98,3 +98,41 @@ Preferred communication style: Simple, everyday language.
 4. Deploy using Replit's deployment system (serves files from `dist/`)
 
 **Common Mistake**: Modifying source code and testing in production without running `npm run build` first. The production site will continue serving old compiled files from `dist/` until a new build is executed.
+
+### Troubleshooting Preview & Development Server
+
+**Problem: Preview not showing anything or showing blank page**
+
+**Solution Steps**:
+1. **Verify Server Status**: Check that the "Server" workflow is RUNNING (not "NOT_STARTED")
+   - Look at the workflow status in the Replit interface
+   - The workflow should show as "RUNNING" with green indicator
+   
+2. **Check Server Logs**: Verify Vite is running on port 5000
+   - Look for output: `➜  Local:   http://localhost:5000/`
+   - Confirm no error messages in the logs
+   
+3. **Click Run Button**: If server is not started, click the "Run" button at the top of Replit
+   - This should start the `npm run dev` command
+   - Wait 5-10 seconds for Vite to fully start
+   - Preview should automatically refresh
+
+**Problem: Duplicate workflows named "Server"**
+
+This can happen if workflows were created multiple times. Having duplicate workflows prevents the server from starting correctly.
+
+**Solution**:
+1. **Remove ALL "Server" workflows** using workflow removal tool
+2. **Create ONE clean workflow**:
+   - Name: "Server"
+   - Command: `npm run dev`
+   - Port: 5000
+   - Output type: webview
+3. **Start the workflow** - it should begin running immediately
+4. **Verify in logs** that Vite started successfully on port 5000
+
+**Important Notes**:
+- The preview ONLY shows the **development** version (source files from `js/`, `index.html`)
+- The preview does NOT show the **production** version (compiled files from `dist/`)
+- To test production changes locally, use `npx serve dist -l 8000` in a separate terminal
+- Always keep ONE workflow running for development - never duplicate workflows
