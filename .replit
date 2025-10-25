@@ -1,4 +1,45 @@
-modules = ["python-3.11"]
+entrypoint = "index.html"
+modules = ["web", "python-3.11", "nodejs-20"]
+
+[nix]
+channel = "stable-24_11"
+packages = ["static-web-server"]
+
+[deployment]
+publicDir = "dist"
+deploymentTarget = "autoscale"
+run = ["npx", "serve", "dist", "-l", "5000"]
+build = ["npm", "run", "build"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Server"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow]]
+name = "Server"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [agent]
 expertMode = true
 
@@ -6,4 +47,6 @@ expertMode = true
 localPort = 5000
 externalPort = 80
 
-[nix]
+[[ports]]
+localPort = 42483
+externalPort = 3000

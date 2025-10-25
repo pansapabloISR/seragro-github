@@ -533,7 +533,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 20px;
         }
 
         .call-status {
@@ -573,24 +573,20 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             color: #d32f2f;
             border: none;
             border-radius: 50px;
-            padding: 10px 16px;
+            padding: 10px 28px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
+            gap: 8px;
             min-height: 40px;
-            min-width: 80px;
-            max-width: 120px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
         }
 
         .end-call-btn:hover {
@@ -678,17 +674,15 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             }
 
             .end-call-btn {
-                padding: 10px 14px;
-                font-size: 13px;
+                padding: 10px 24px;
+                font-size: 14px;
                 min-height: 38px;
-                min-width: 70px;
-                max-width: 100px;
             }
         }
 
         @media (max-width: 480px) {
             .call-indicator-content {
-                gap: 8px;
+                gap: 12px;
             }
 
             .call-status {
@@ -696,12 +690,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             }
 
             .end-call-btn {
-                padding: 9px 12px;
-                font-size: 12px;
+                padding: 9px 20px;
+                font-size: 13px;
                 min-height: 36px;
-                min-width: 65px;
-                max-width: 90px;
-                letter-spacing: -0.7px;
             }
 
             .pulse-dot {
@@ -711,34 +702,24 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         }
 
         .is-android .call-indicator .end-call-btn {
-            padding: 10px 8px;
-            font-size: 11px;
+            padding: 11px 14px;
+            font-size: 12px;
             min-height: 44px;
-            letter-spacing: -1px;
-            min-width: 60px;
-            max-width: 85px;
-            font-weight: 500;
         }
 
         @media (max-width: 768px) {
             .is-android .call-indicator .end-call-btn {
-                padding: 9px 6px;
-                font-size: 10px;
-                min-height: 42px;
-                letter-spacing: -1px;
-                min-width: 55px;
-                max-width: 80px;
+                padding: 11px 12px;
+                font-size: 12px;
+                min-height: 44px;
             }
         }
 
         @media (max-width: 480px) {
             .is-android .call-indicator .end-call-btn {
-                padding: 8px 5px;
-                font-size: 10px;
-                min-height: 40px;
-                letter-spacing: -1px;
-                min-width: 50px;
-                max-width: 75px;
+                padding: 11px 10px;
+                font-size: 11px;
+                min-height: 44px;
             }
         }
     `,e=document.createElement("style");e.textContent=t,document.head.appendChild(e)}function kn(){const t=document.getElementById("unified-contact-button"),e=document.getElementById("unified-contact-menu");Jn=!Jn,Jn?(e.classList.add("show"),t.classList.add("menu-open")):(e.classList.remove("show"),t.classList.remove("menu-open"))}function Mu(){const t=`https://api.whatsapp.com/send?phone=${be.whatsappPhone}&text=${encodeURIComponent(be.whatsappMessage)}`;window.open(t,"_blank"),kn()}function Pu(){kn(),Ls(),window.MavildaChat&&typeof window.MavildaChat.open=="function"&&window.MavildaChat.open()}async function Iu(){kn();try{const t=Is();console.log("🎯 Iniciando llamada con Vapi..."),await t.start(be.vapiAssistantId)}catch(t){console.error("❌ Error al iniciar llamada:",t),alert("No se pudo iniciar la llamada. Por favor, intentá de nuevo."),kr()}}function Lu(){if(Re&&rn)try{Re.stop(),console.log("✅ Llamada detenida por el usuario")}catch(t){console.error("❌ Error al detener llamada:",t)}}function Du(){/Android/i.test(navigator.userAgent)&&document.documentElement.classList.add("is-android")}function qa(){ku(),Du(),Cu(),Tu(),Ou(),Au(),Is(),console.log("✅ Sistema de comunicación unificado cargado correctamente")}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",qa):qa();

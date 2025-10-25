@@ -4,13 +4,13 @@ import Vapi from "@vapi-ai/web";
 // CONFIGURACIÓN
 // ==========================================
 const CONFIG = {
-    whatsappPhone: "5493465432688",
-    whatsappMessage: "Hola, vengo desde el sitio de SER AGRO",
-    vapiPublicKey: "5a29292f-d9cc-4a21-bb7e-ff8df74763cd",
-    vapiAssistantId: "776543a0-f4a2-4ed7-ad7a-f1fe0f6fd4d4",
-    primaryColor: "#2E7D32",
-    secondaryColor: "#1B5E20",
-    whatsappColor: "#25D366",
+    whatsappPhone: '5493465432688',
+    whatsappMessage: 'Hola, vengo desde el sitio de SER AGRO',
+    vapiPublicKey: '5a29292f-d9cc-4a21-bb7e-ff8df74763cd',
+    vapiAssistantId: '776543a0-f4a2-4ed7-ad7a-f1fe0f6fd4d4',
+    primaryColor: '#2E7D32',
+    secondaryColor: '#1B5E20',
+    whatsappColor: '#25D366'
 };
 
 let menuOpen = false;
@@ -23,30 +23,28 @@ let inCall = false;
 function initVapiClient() {
     if (!vapiClient) {
         vapiClient = new Vapi(CONFIG.vapiPublicKey);
-
+        
         // Eventos del cliente Vapi
-        vapiClient.on("call-start", () => {
-            console.log("✅ Llamada iniciada");
+        vapiClient.on('call-start', () => {
+            console.log('✅ Llamada iniciada');
             inCall = true;
             showCallIndicator();
         });
-
-        vapiClient.on("call-end", () => {
-            console.log("✅ Llamada finalizada");
+        
+        vapiClient.on('call-end', () => {
+            console.log('✅ Llamada finalizada');
             inCall = false;
             hideCallIndicator();
         });
-
-        vapiClient.on("error", (error) => {
-            console.error("❌ Error en Vapi:", error);
-            alert(
-                "Ocurrió un error durante la llamada. Por favor, intentá de nuevo.",
-            );
+        
+        vapiClient.on('error', (error) => {
+            console.error('❌ Error en Vapi:', error);
+            alert('Ocurrió un error durante la llamada. Por favor, intentá de nuevo.');
             inCall = false;
             hideCallIndicator();
         });
-
-        console.log("✅ Cliente Vapi inicializado");
+        
+        console.log('✅ Cliente Vapi inicializado');
     }
     return vapiClient;
 }
@@ -55,71 +53,69 @@ function initVapiClient() {
 // MOSTRAR/OCULTAR INDICADOR DE LLAMADA
 // ==========================================
 function showCallIndicator() {
-    const indicator = document.getElementById("call-indicator");
-    const overlay = document.getElementById("call-overlay");
-    const mainButton = document.getElementById("unified-contact-button");
-
-    if (indicator) indicator.classList.add("active");
-    if (overlay) overlay.classList.add("active");
-    if (mainButton) mainButton.style.display = "none";
-
+    const indicator = document.getElementById('call-indicator');
+    const overlay = document.getElementById('call-overlay');
+    const mainButton = document.getElementById('unified-contact-button');
+    
+    if (indicator) indicator.classList.add('active');
+    if (overlay) overlay.classList.add('active');
+    if (mainButton) mainButton.style.display = 'none';
+    
     // Bloquear scroll del body
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 }
 
 function hideCallIndicator() {
-    const indicator = document.getElementById("call-indicator");
-    const overlay = document.getElementById("call-overlay");
-    const mainButton = document.getElementById("unified-contact-button");
-
-    if (indicator) indicator.classList.remove("active");
-    if (overlay) overlay.classList.remove("active");
-    if (mainButton) mainButton.style.display = "flex";
-
+    const indicator = document.getElementById('call-indicator');
+    const overlay = document.getElementById('call-overlay');
+    const mainButton = document.getElementById('unified-contact-button');
+    
+    if (indicator) indicator.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    if (mainButton) mainButton.style.display = 'flex';
+    
     // Restaurar scroll del body
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
 }
 
 // ==========================================
 // MOSTRAR/OCULTAR BOTÓN PRINCIPAL
 // ==========================================
 function hideMainButton() {
-    const button = document.getElementById("unified-contact-button");
+    const button = document.getElementById('unified-contact-button');
     if (button) {
-        button.style.opacity = "0";
-        button.style.pointerEvents = "none";
+        button.style.opacity = '0';
+        button.style.pointerEvents = 'none';
     }
 }
 
 function showMainButton() {
-    const button = document.getElementById("unified-contact-button");
+    const button = document.getElementById('unified-contact-button');
     if (button) {
-        button.style.opacity = "1";
-        button.style.pointerEvents = "all";
+        button.style.opacity = '1';
+        button.style.pointerEvents = 'all';
     }
 }
 
 // Exponer API para que otros módulos puedan ocultar/mostrar el botón
 window.UnifiedContact = {
     hide: hideMainButton,
-    show: showMainButton,
+    show: showMainButton
 };
 
 // ==========================================
 // LIMPIEZA DE CACHÉ
 // ==========================================
 function clearCacheAndServiceWorkers() {
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-            .getRegistrations()
-            .then(function (registrations) {
-                for (let registration of registrations) {
-                    registration.unregister();
-                }
-            });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
     }
-    if ("caches" in window) {
-        caches.keys().then(function (names) {
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
             for (let name of names) {
                 caches.delete(name);
             }
@@ -131,9 +127,9 @@ function clearCacheAndServiceWorkers() {
 // CREAR BOTÓN PRINCIPAL
 // ==========================================
 function createMainButton() {
-    const button = document.createElement("button");
-    button.id = "unified-contact-button";
-    button.className = "unified-contact-main-button";
+    const button = document.createElement('button');
+    button.id = 'unified-contact-button';
+    button.className = 'unified-contact-main-button';
     button.innerHTML = `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style="flex-shrink: 0;">
             <circle cx="8" cy="12" r="1.5"/>
@@ -143,7 +139,7 @@ function createMainButton() {
         </svg>
         <span>Hablá con nosotros</span>
     `;
-    button.addEventListener("click", toggleMenu);
+    button.addEventListener('click', toggleMenu);
     document.body.appendChild(button);
 }
 
@@ -151,24 +147,24 @@ function createMainButton() {
 // CREAR MENÚ DE OPCIONES
 // ==========================================
 function createOptionsMenu() {
-    const menu = document.createElement("div");
-    menu.id = "unified-contact-menu";
-    menu.className = "unified-contact-menu";
-
+    const menu = document.createElement('div');
+    menu.id = 'unified-contact-menu';
+    menu.className = 'unified-contact-menu';
+    
     // Opción WhatsApp
-    const whatsappOption = document.createElement("button");
-    whatsappOption.className = "contact-option whatsapp-option";
+    const whatsappOption = document.createElement('button');
+    whatsappOption.className = 'contact-option whatsapp-option';
     whatsappOption.innerHTML = `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
         <span>WhatsApp</span>
     `;
-    whatsappOption.addEventListener("click", handleWhatsAppClick);
-
+    whatsappOption.addEventListener('click', handleWhatsAppClick);
+    
     // Opción Chat
-    const chatOption = document.createElement("button");
-    chatOption.className = "contact-option chat-option";
+    const chatOption = document.createElement('button');
+    chatOption.className = 'contact-option chat-option';
     chatOption.innerHTML = `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
@@ -178,23 +174,23 @@ function createOptionsMenu() {
         </svg>
         <span>Chat</span>
     `;
-    chatOption.addEventListener("click", handleChatClick);
-
+    chatOption.addEventListener('click', handleChatClick);
+    
     // Opción Llamar
-    const callOption = document.createElement("button");
-    callOption.className = "contact-option call-option";
+    const callOption = document.createElement('button');
+    callOption.className = 'contact-option call-option';
     callOption.innerHTML = `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
         </svg>
         <span>Llamar</span>
     `;
-    callOption.addEventListener("click", handleCallClick);
-
+    callOption.addEventListener('click', handleCallClick);
+    
     menu.appendChild(whatsappOption);
     menu.appendChild(chatOption);
     menu.appendChild(callOption);
-
+    
     document.body.appendChild(menu);
 }
 
@@ -203,14 +199,14 @@ function createOptionsMenu() {
 // ==========================================
 function createCallIndicator() {
     // Crear overlay de fondo
-    const overlay = document.createElement("div");
-    overlay.id = "call-overlay";
-    overlay.className = "call-overlay";
-
+    const overlay = document.createElement('div');
+    overlay.id = 'call-overlay';
+    overlay.className = 'call-overlay';
+    
     // Crear indicador de llamada
-    const indicator = document.createElement("div");
-    indicator.id = "call-indicator";
-    indicator.className = "call-indicator";
+    const indicator = document.createElement('div');
+    indicator.id = 'call-indicator';
+    indicator.className = 'call-indicator';
     indicator.innerHTML = `
         <div class="call-indicator-content">
             <div class="call-status">
@@ -222,12 +218,12 @@ function createCallIndicator() {
             </button>
         </div>
     `;
-
+    
     document.body.appendChild(overlay);
     document.body.appendChild(indicator);
-
+    
     // Agregar evento al botón de colgar
-    document.getElementById("end-call-btn").addEventListener("click", endCall);
+    document.getElementById('end-call-btn').addEventListener('click', endCall);
 }
 
 // ==========================================
@@ -433,13 +429,13 @@ function addStyles() {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            gap: 0;  /* CAMBIADO de 8px a 0 - junta elementos para Android */
+            gap: 20px;
         }
 
         .call-status {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 18px;
         }
 
@@ -473,24 +469,20 @@ function addStyles() {
             color: #d32f2f;
             border: none;
             border-radius: 50px;
-            padding: 10px 16px;
+            padding: 10px 28px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
+            gap: 8px;
             min-height: 40px;
-            min-width: 80px;
-            max-width: 120px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
         }
 
         .end-call-btn:hover {
@@ -509,25 +501,6 @@ function addStyles() {
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
-        }
-
-        /* Estilos específicos para Android - sin gaps */
-        .is-android .call-indicator-content {
-            gap: 4px !important;
-        }
-
-        .is-android .call-status {
-            gap: 6px !important;
-        }
-
-        .is-android .end-call-btn {
-            padding: 10px 10px;
-            font-size: 12px;
-            min-height: 44px;
-            letter-spacing: -0.8px;
-            min-width: 65px;
-            max-width: 90px;
-            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -592,85 +565,62 @@ function addStyles() {
                 }
             }
 
-            .call-indicator-content {
-                gap: 6px !important;
-            }
-
             .call-status {
                 font-size: 16px;
-                gap: 8px;
             }
 
             .end-call-btn {
-                padding: 10px 14px;
-                font-size: 13px;
+                padding: 10px 24px;
+                font-size: 14px;
                 min-height: 38px;
-                min-width: 70px;
-                max-width: 100px;
-            }
-
-            .is-android .call-indicator-content {
-                gap: 3px !important;
-            }
-
-            .is-android .call-status {
-                gap: 5px !important;
-            }
-
-            .is-android .end-call-btn {
-                padding: 9px 8px;
-                font-size: 11px;
-                min-height: 42px;
-                letter-spacing: -1px;
-                min-width: 60px;
-                max-width: 85px;
             }
         }
 
         @media (max-width: 480px) {
             .call-indicator-content {
-                gap: 5px !important;
+                gap: 12px;
             }
 
             .call-status {
                 font-size: 14px;
-                gap: 7px;
             }
 
             .end-call-btn {
-                padding: 9px 12px;
-                font-size: 12px;
+                padding: 9px 20px;
+                font-size: 13px;
                 min-height: 36px;
-                min-width: 65px;
-                max-width: 90px;
-                letter-spacing: -0.7px;
             }
 
             .pulse-dot {
                 width: 12px;
                 height: 12px;
             }
+        }
 
-            .is-android .call-indicator-content {
-                gap: 2px !important;
+        .is-android .call-indicator .end-call-btn {
+            padding: 11px 14px;
+            font-size: 12px;
+            min-height: 44px;
+        }
+
+        @media (max-width: 768px) {
+            .is-android .call-indicator .end-call-btn {
+                padding: 11px 12px;
+                font-size: 12px;
+                min-height: 44px;
             }
+        }
 
-            .is-android .call-status {
-                gap: 4px !important;
-            }
-
-            .is-android .end-call-btn {
-                padding: 8px 6px;
-                font-size: 10px;
-                min-height: 40px;
-                letter-spacing: -1px;
-                min-width: 55px;
-                max-width: 75px;
+        @media (max-width: 480px) {
+            .is-android .call-indicator .end-call-btn {
+                padding: 11px 10px;
+                font-size: 11px;
+                min-height: 44px;
             }
         }
     `;
 
-    const styleSheet = document.createElement("style");
+    const styleSheet = document.createElement('style');
     styleSheet.textContent = styles;
     document.head.appendChild(styleSheet);
 }
@@ -679,17 +629,17 @@ function addStyles() {
 // TOGGLE MENÚ
 // ==========================================
 function toggleMenu() {
-    const button = document.getElementById("unified-contact-button");
-    const menu = document.getElementById("unified-contact-menu");
-
+    const button = document.getElementById('unified-contact-button');
+    const menu = document.getElementById('unified-contact-menu');
+    
     menuOpen = !menuOpen;
-
+    
     if (menuOpen) {
-        menu.classList.add("show");
-        button.classList.add("menu-open");
+        menu.classList.add('show');
+        button.classList.add('menu-open');
     } else {
-        menu.classList.remove("show");
-        button.classList.remove("menu-open");
+        menu.classList.remove('show');
+        button.classList.remove('menu-open');
     }
 }
 
@@ -698,31 +648,32 @@ function toggleMenu() {
 // ==========================================
 function handleWhatsAppClick() {
     const url = `https://api.whatsapp.com/send?phone=${CONFIG.whatsappPhone}&text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
     toggleMenu();
 }
 
 function handleChatClick() {
     toggleMenu();
     hideMainButton();
-    if (window.MavildaChat && typeof window.MavildaChat.open === "function") {
+    if (window.MavildaChat && typeof window.MavildaChat.open === 'function') {
         window.MavildaChat.open();
     }
 }
 
 async function handleCallClick() {
     toggleMenu();
-
+    
     try {
         // Inicializar cliente si es necesario
         const client = initVapiClient();
-
+        
         // Iniciar la llamada
-        console.log("🎯 Iniciando llamada con Vapi...");
+        console.log('🎯 Iniciando llamada con Vapi...');
         await client.start(CONFIG.vapiAssistantId);
+        
     } catch (error) {
-        console.error("❌ Error al iniciar llamada:", error);
-        alert("No se pudo iniciar la llamada. Por favor, intentá de nuevo.");
+        console.error('❌ Error al iniciar llamada:', error);
+        alert('No se pudo iniciar la llamada. Por favor, intentá de nuevo.');
         hideCallIndicator();
     }
 }
@@ -731,9 +682,9 @@ function endCall() {
     if (vapiClient && inCall) {
         try {
             vapiClient.stop();
-            console.log("✅ Llamada detenida por el usuario");
+            console.log('✅ Llamada detenida por el usuario');
         } catch (error) {
-            console.error("❌ Error al detener llamada:", error);
+            console.error('❌ Error al detener llamada:', error);
         }
     }
 }
@@ -744,7 +695,7 @@ function endCall() {
 function detectAndroid() {
     const isAndroid = /Android/i.test(navigator.userAgent);
     if (isAndroid) {
-        document.documentElement.classList.add("is-android");
+        document.documentElement.classList.add('is-android');
     }
 }
 
@@ -759,13 +710,13 @@ function init() {
     createCallIndicator();
     addStyles();
     initVapiClient();
-
-    console.log("✅ Sistema de comunicación unificado cargado correctamente");
+    
+    console.log('✅ Sistema de comunicación unificado cargado correctamente');
 }
 
 // Ejecutar cuando el DOM esté listo
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
 }
