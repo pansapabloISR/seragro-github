@@ -22,10 +22,10 @@ let inCall = false;
 // ==========================================
 if (/Android/i.test(navigator.userAgent)) {
     if (document.body) {
-        document.body.classList.add("is-android");
+        document.body.classList.add('is-android');
     } else {
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.classList.add("is-android");
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('is-android');
         });
     }
 }
@@ -547,13 +547,21 @@ function addStyles() {
             display: none !important; /* Ocultar "En llamada..." en Android */
         }
 
-       .is-android .end-call-btn {
-    padding: 10px 28px;        ← Cambiar para hacerlo más chico
-    font-size: 12px;           ← Cambiar para texto más chico
-    min-height: 33px;          ← Cambiar para altura más chica
-    min-width: 80px;          ← Cambiar para ancho más chico
-    max-width: 100px;
-}
+        .is-android .end-call-btn {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            border: 3px solid white;
+            padding: 20px 50px;
+            font-size: 20px;
+            min-height: 60px;
+            min-width: 200px;
+            max-width: 250px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 60px;
+            box-shadow: 0 8px 30px rgba(211, 47, 47, 0.6);
+        }
 
         @media (max-width: 768px) {
             .unified-contact-main-button {
