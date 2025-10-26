@@ -541,7 +541,7 @@ function addStyles() {
             padding: 12px 24px;  /* Tamaño normal, no pequeño */
             cursor: pointer;
             font-weight: 600;
-            font-size: 15px;  /* Tamaño normal de texto */
+            font-size: 20px;  /* Tamaño normal de texto */
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
