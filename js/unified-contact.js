@@ -538,10 +538,10 @@ function addStyles() {
             color: #d32f2f;
             border: none;
             border-radius: 50px;
-            padding: 12px 24px;  /* Tamaño normal, no pequeño */
+            padding: 12px 24px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 20px;  /* Tamaño normal de texto */
+            font-size: 18px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
@@ -549,13 +549,13 @@ function addStyles() {
             justify-content: center;
             gap: 4px;
             min-height: 40px;
-            min-width: 90px;  /* Un poco más ancho */
+            min-width: 90px;
             max-width: 130px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0;  /* Sin comprimir letras */
+            letter-spacing: 0.5px;
         }
 
         .end-call-btn:hover {
