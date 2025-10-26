@@ -18,6 +18,19 @@ let vapiClient = null;
 let inCall = false;
 
 // ==========================================
+// DETECTAR ANDROID Y AGREGAR CLASE AL BODY
+// ==========================================
+if (/Android/i.test(navigator.userAgent)) {
+    if (document.body) {
+        document.body.classList.add('is-android');
+    } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('is-android');
+        });
+    }
+}
+
+// ==========================================
 // INICIALIZAR CLIENTE VAPI
 // ==========================================
 function initVapiClient() {
