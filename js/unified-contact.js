@@ -22,10 +22,10 @@ let inCall = false;
 // ==========================================
 if (/Android/i.test(navigator.userAgent)) {
     if (document.body) {
-        document.body.classList.add("is-android");
+        document.body.classList.add('is-android');
     } else {
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.classList.add("is-android");
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('is-android');
         });
     }
 }
@@ -224,54 +224,17 @@ function createCallIndicator() {
     const indicator = document.createElement("div");
     indicator.id = "call-indicator";
     indicator.className = "call-indicator";
-
-    // DETECTAR SI ES ANDROID (incluye Pixel)
-    const isAndroid =
-        /Android/i.test(navigator.userAgent) ||
-        /Pixel/i.test(navigator.userAgent);
-    console.log("Dispositivo Android/Pixel detectado:", isAndroid);
-
-    if (isAndroid) {
-        // ANDROID: Solo botón COLGAR normal centrado
-        indicator.innerHTML = `
-            <button class="end-call-btn" id="end-call-btn" 
-                style="
-                    background: #d32f2f !important;
-                    color: white !important;
-                    padding: 10px 20px !important;
-                    font-size: 16px !important;
-                    font-weight: 600 !important;
-                    border: 2px solid white !important;
-                    border-radius: 30px !important;
-                    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4) !important;
-                    cursor: pointer !important;
-                ">
+    indicator.innerHTML = `
+        <div class="call-indicator-content">
+            <div class="call-status">
+                <div class="pulse-dot"></div>
+                <span class="call-text">En llamada...</span>
+            </div>
+            <button class="end-call-btn" id="end-call-btn">
                 Colgar
             </button>
-        `;
-        // Centrar el indicador en Android
-        indicator.style.position = "fixed";
-        indicator.style.top = "50%";
-        indicator.style.left = "50%";
-        indicator.style.transform = "translate(-50%, -50%)";
-        indicator.style.background = "transparent";
-        indicator.style.padding = "0";
-        indicator.style.borderRadius = "0";
-        indicator.style.display = "none"; // Empieza oculto
-    } else {
-        // iPhone/PC: Diseño original con botón tamaño normal
-        indicator.innerHTML = `
-            <div class="call-indicator-content">
-                <div class="call-status">
-                    <div class="pulse-dot"></div>
-                    <span class="call-text">En llamada...</span>
-                </div>
-                <button class="end-call-btn" id="end-call-btn">
-                    Colgar
-                </button>
-            </div>
-        `;
-    }
+        </div>
+    `;
 
     document.body.appendChild(overlay);
     document.body.appendChild(indicator);
@@ -523,10 +486,10 @@ function addStyles() {
             color: #d32f2f;
             border: none;
             border-radius: 50px;
-            padding: 12px 24px;  /* Tamaño normal, no pequeño */
+            padding: 10px 16px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 15px;  /* Tamaño normal de texto */
+            font-size: 14px;
             transition: all 0.3s ease;
             font-family: 'Open Sans', sans-serif;
             display: flex;
@@ -534,13 +497,13 @@ function addStyles() {
             justify-content: center;
             gap: 4px;
             min-height: 40px;
-            min-width: 90px;  /* Un poco más ancho */
-            max-width: 130px;
+            min-width: 80px;
+            max-width: 120px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             white-space: nowrap;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0;  /* Sin comprimir letras */
+            letter-spacing: -0.5px;
         }
 
         .end-call-btn:hover {
@@ -812,23 +775,9 @@ function endCall() {
 // DETECTAR ANDROID
 // ==========================================
 function detectAndroid() {
-    const userAgent = navigator.userAgent;
-    const isAndroid = /Android/i.test(userAgent) || /Pixel/i.test(userAgent);
-
-    // Debug info
-    console.log("🔍 Detectando dispositivo...");
-    console.log("User Agent completo:", userAgent);
-    console.log("¿Es Android/Pixel?:", isAndroid);
-
-    // Para Replit preview - detectar si incluye "Mobile" en el user agent
-    const isMobileView = /Mobile/i.test(userAgent);
-    if (isMobileView) {
-        console.log("📱 Vista móvil detectada");
-    }
-
-    if (isAndroid || isMobileView) {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    if (isAndroid) {
         document.documentElement.classList.add("is-android");
-        console.log("✅ Clase 'is-android' agregada al HTML");
     }
 }
 
@@ -852,22 +801,4 @@ if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
 } else {
     init();
-}
-
-// DEBUG PARA REPLIT PREVIEW
-console.log("✅ UNIFIED CONTACT - VERSIÓN TAMAÑOS NORMALES");
-console.log("📱 User Agent:", navigator.userAgent);
-console.log(
-    "🔍 Android/Pixel detectado:",
-    /Android|Pixel/i.test(navigator.userAgent),
-);
-
-// Para testing en Replit - Forzar Android si estás en preview
-if (
-    window.location.hostname.includes("replit") ||
-    window.location.hostname.includes("repl")
-) {
-    console.log("⚠️ Detectado entorno Replit - Activando modo debug");
-    // Puedes descomentar la siguiente línea para forzar modo Android en preview:
-    // document.documentElement.classList.add("is-android");
 }
