@@ -36,7 +36,7 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 37549
+localPort = 33887
 externalPort = 3000
 
 [webview]

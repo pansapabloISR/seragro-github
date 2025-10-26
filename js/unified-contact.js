@@ -622,7 +622,7 @@ function addStyles() {
                 right: auto;
                 transform: translateX(-50%);
                 padding: 14px 24px;
-                font-size: 15px;
+                font-size: 20px;
                 box-sizing: border-box;
                 width: auto;
                 max-width: calc(100vw - 40px);
@@ -724,7 +724,7 @@ function addStyles() {
 
             .end-call-btn {
                 padding: 9px 12px;
-                font-size: 12px;
+                font-size: 20px;
                 min-height: 36px;
                 min-width: 65px;
                 max-width: 90px;
