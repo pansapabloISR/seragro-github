@@ -2,11 +2,12 @@
 // CONFIGURACIÓN
 // ==========================================
 const CONFIG = {
-    webhookUrl: 'https://primary-production-396f31.up.railway.app/webhook/mavilda-chat',
-    position: 'bottom-right',
-    primaryColor: '#2E7D32',
-    secondaryColor: '#1B5E20',
-    autoGreeting: true
+    webhookUrl:
+        "https://primary-production-396f31.up.railway.app/webhook/mavilda-chat",
+    position: "bottom-right",
+    primaryColor: "#2E7D32",
+    secondaryColor: "#1B5E20",
+    autoGreeting: true,
 };
 
 let isOpen = false;
@@ -17,7 +18,9 @@ let hasGreeted = false;
 // GENERAR SESSION ID
 // ==========================================
 function generateSessionId() {
-    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    return (
+        "session_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9)
+    );
 }
 
 // ==========================================
@@ -58,7 +61,7 @@ function createChatWidget() {
         </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', widgetHTML);
+    document.body.insertAdjacentHTML("beforeend", widgetHTML);
 }
 
 // ==========================================
@@ -291,7 +294,7 @@ function addStyles() {
         }
     `;
 
-    const styleSheet = document.createElement('style');
+    const styleSheet = document.createElement("style");
     styleSheet.textContent = styles;
     document.head.appendChild(styleSheet);
 }
@@ -300,12 +303,12 @@ function addStyles() {
 // MOSTRAR MENSAJE EN EL CHAT
 // ==========================================
 function mostrarMensaje(texto, esUsuario = false) {
-    const chatMessages = document.getElementById('mavilda-chat-messages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `chat-message ${esUsuario ? 'user' : 'bot'}`;
+    const chatMessages = document.getElementById("mavilda-chat-messages");
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `chat-message ${esUsuario ? "user" : "bot"}`;
 
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
+    const bubble = document.createElement("div");
+    bubble.className = "message-bubble";
     bubble.innerHTML = formatearMensaje(texto);
 
     messageDiv.appendChild(bubble);
@@ -317,9 +320,9 @@ function mostrarMensaje(texto, esUsuario = false) {
 // FORMATEAR MENSAJE (negrita, bullets)
 // ==========================================
 function formatearMensaje(texto) {
-    texto = texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    texto = texto.replace(/^[•\-]\s/gm, '• ');
-    texto = texto.replace(/\n/g, '<br>');
+    texto = texto.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    texto = texto.replace(/^[•\-]\s/gm, "• ");
+    texto = texto.replace(/\n/g, "<br>");
     return texto;
 }
 
@@ -327,14 +330,15 @@ function formatearMensaje(texto) {
 // MOSTRAR INDICADOR DE ESCRITURA
 // ==========================================
 function mostrarEscribiendo() {
-    const chatMessages = document.getElementById('mavilda-chat-messages');
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'chat-message bot';
-    typingDiv.id = 'typing-indicator';
+    const chatMessages = document.getElementById("mavilda-chat-messages");
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "chat-message bot";
+    typingDiv.id = "typing-indicator";
 
-    const typingBubble = document.createElement('div');
-    typingBubble.className = 'typing-indicator';
-    typingBubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    const typingBubble = document.createElement("div");
+    typingBubble.className = "typing-indicator";
+    typingBubble.innerHTML =
+        '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
 
     typingDiv.appendChild(typingBubble);
     chatMessages.appendChild(typingDiv);
@@ -342,7 +346,7 @@ function mostrarEscribiendo() {
 }
 
 function ocultarEscribiendo() {
-    const typingIndicator = document.getElementById('typing-indicator');
+    const typingIndicator = document.getElementById("typing-indicator");
     if (typingIndicator) {
         typingIndicator.remove();
     }
@@ -354,10 +358,10 @@ function ocultarEscribiendo() {
 async function enviarMensaje(mensaje) {
     if (!mensaje.trim()) return;
 
-    const chatInput = document.getElementById('mavilda-chat-input');
-    const sendButton = document.getElementById('mavilda-chat-send');
+    const chatInput = document.getElementById("mavilda-chat-input");
+    const sendButton = document.getElementById("mavilda-chat-send");
 
-    if (mensaje !== 'Hola') {
+    if (mensaje !== "Hola") {
         mostrarMensaje(mensaje, true);
     }
 
@@ -368,14 +372,14 @@ async function enviarMensaje(mensaje) {
 
     try {
         const response = await fetch(CONFIG.webhookUrl, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 message: mensaje,
-                sessionId: sessionId
-            })
+                sessionId: sessionId,
+            }),
         });
 
         const data = await response.json();
@@ -387,15 +391,18 @@ async function enviarMensaje(mensaje) {
         } else if (data.response) {
             mostrarMensaje(data.response);
         } else {
-            mostrarMensaje('Lo siento, hubo un error. ¿Podrías intentar de nuevo?');
+            mostrarMensaje(
+                "Lo siento, hubo un error. ¿Podrías intentar de nuevo?",
+            );
         }
-
     } catch (error) {
-        console.error('Error al enviar mensaje:', error);
+        console.error("Error al enviar mensaje:", error);
         ocultarEscribiendo();
-        mostrarMensaje('Ups, hubo un problema de conexión. Por favor intentá de nuevo.');
+        mostrarMensaje(
+            "Ups, hubo un problema de conexión. Por favor intentá de nuevo.",
+        );
     } finally {
-        chatInput.value = '';
+        chatInput.value = "";
         chatInput.disabled = false;
         sendButton.disabled = false;
         chatInput.focus();
@@ -409,7 +416,7 @@ function enviarSaludoAutomatico() {
     if (!hasGreeted && CONFIG.autoGreeting) {
         hasGreeted = true;
         setTimeout(() => {
-            enviarMensaje('Hola');
+            enviarMensaje("Hola");
         }, 500);
     }
 }
@@ -418,26 +425,29 @@ function enviarSaludoAutomatico() {
 // ABRIR/CERRAR CHAT (API Pública)
 // ==========================================
 function openChat() {
-    const chatWindow = document.getElementById('mavilda-chat-window');
-    
+    const chatWindow = document.getElementById("mavilda-chat-window");
+
     if (!isOpen) {
         isOpen = true;
-        chatWindow.style.display = 'flex';
-        document.getElementById('mavilda-chat-input').focus();
-        
+        chatWindow.style.display = "flex";
+        document.getElementById("mavilda-chat-input").focus();
+
         enviarSaludoAutomatico();
     }
 }
 
 function closeChat() {
-    const chatWindow = document.getElementById('mavilda-chat-window');
-    
+    const chatWindow = document.getElementById("mavilda-chat-window");
+
     if (isOpen) {
         isOpen = false;
-        chatWindow.style.display = 'none';
-        
+        chatWindow.style.display = "none";
+
         // Mostrar botón principal de nuevo
-        if (window.UnifiedContact && typeof window.UnifiedContact.show === 'function') {
+        if (
+            window.UnifiedContact &&
+            typeof window.UnifiedContact.show === "function"
+        ) {
             window.UnifiedContact.show();
         }
     }
@@ -447,21 +457,21 @@ function closeChat() {
 // INICIALIZAR EVENTOS
 // ==========================================
 function inicializarEventos() {
-    const closeButton = document.getElementById('mavilda-chat-close');
-    const chatInput = document.getElementById('mavilda-chat-input');
-    const sendButton = document.getElementById('mavilda-chat-send');
+    const closeButton = document.getElementById("mavilda-chat-close");
+    const chatInput = document.getElementById("mavilda-chat-input");
+    const sendButton = document.getElementById("mavilda-chat-send");
 
-    closeButton.addEventListener('click', closeChat);
+    closeButton.addEventListener("click", closeChat);
 
-    sendButton.addEventListener('click', () => {
+    sendButton.addEventListener("click", () => {
         const mensaje = chatInput.value;
         if (mensaje.trim()) {
             enviarMensaje(mensaje);
         }
     });
 
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
+    chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             const mensaje = chatInput.value;
             if (mensaje.trim()) {
@@ -479,14 +489,14 @@ function init() {
     createChatWidget();
     addStyles();
     inicializarEventos();
-    
-    console.log('✅ Mavilda Chat Widget cargado correctamente');
-    console.log('Session ID:', sessionId);
+
+    console.log("✅ Mavilda Chat Widget cargado correctamente");
+    console.log("Session ID:", sessionId);
 }
 
 // Ejecutar cuando el DOM esté listo
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
 } else {
     init();
 }
@@ -496,5 +506,5 @@ if (document.readyState === 'loading') {
 // ==========================================
 window.MavildaChat = {
     open: openChat,
-    close: closeChat
+    close: closeChat,
 };
